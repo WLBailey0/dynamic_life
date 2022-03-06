@@ -23,14 +23,9 @@ public class ServerThread extends Thread{
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(socket.getOutputStream(), true);
 
-            while(true){
-                String outputString = input.readLine();
-                if(outputString.equals("exit")){
-                    break;
-                }
-                printToAllClients(outputString);
-                System.out.println("Server Received: " + outputString);
-            }
+            String outputString = input.readLine();
+            printToAllClients(outputString);
+            System.out.println("Server Received: " + outputString);
         }
         catch (Exception e){
             System.out.println("Error in dynamicLifeServer.ServerThread: " + Arrays.toString(e.getStackTrace()));
